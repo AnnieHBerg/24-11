@@ -1,0 +1,34 @@
+// Navigerar sig till id: "first", gör texten grön
+var first = document.getElementById("first");
+first.style.color = "green"
+ 
+// Navigerar till alla p-element, gör texten kursiv
+var p = document.getElementsByTagName("p");
+for(var i = 0; i < p.length; i++)
+{
+     p[i].style.fontStyle = "italic";
+}
+ 
+// Navigerar till föregående syskon från p-taggen "Min första paragraf" (taggen h1, "Min sida") och gör texten röd
+var h1 = prev(first);
+h1.style.color = "red";
+ 
+// Navigerar till nästa syskon från p-taggen "Min första paragraf" (andra p-taggen, "Min andra paragraf") och gör texten rosa
+var p2 = next(first);
+p2.style.color = "pink";
+ 
+// Funktionen next(elem) letar upp (och returnerar) syskon element-noden efter det element som man skickar in som argument
+function next(elem) {
+    do {
+        elem = elem.nextSibling; // Sparar kommande nod i variabeln elem
+    } while (elem && elem.nodeType != 1); // Om noden är en element-nod returneras noden. Annars så fortsätter loopen till vi hittar en element-nod eller att det inte finns någon mer nod
+    return elem; // Returnerar en ev. element-nod            
+}
+ 
+// Funktionen prev(elem) letar upp (och returnerar) syskon element-noden före det element som man skickar in som argument
+function prev(elem) {
+    do {
+        elem = elem.previousSibling; // Sparar föregående nod i variabeln elem
+    } while (elem && elem.nodeType != 1); // Om noden är en element-nod returneras noden. Annars så fortsätter loopen till vi hittar en element-nod eller att det inte finns någon mer nod
+    return elem; // Returnerar en ev. element-nod        
+}
